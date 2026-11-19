@@ -43,9 +43,9 @@ jobs:
       - name: Install browser test dependencies
         run: |
           python3 -m pip install -r tests/browser-requirements.txt
-          python3 -m playwright install --with-deps chromium
+          test -x "$(command -v google-chrome)"
       - name: Check application in a browser
-        run: python3 tests/browser_smoke.py
+        run: CHROMIUM_BIN="$(command -v google-chrome)" python3 tests/browser_smoke.py
       - name: Save browser screenshots
         if: always()
         uses: actions/upload-artifact@v4
