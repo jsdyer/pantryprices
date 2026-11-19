@@ -74,7 +74,9 @@ export async function loadEdition(unit) {
     unit +
     " · " +
     data.coverage +
-    " · Sources retrieved " +
+    " · Historical sources verified " +
+    data.historicalVerified +
+    " · Monthly tables retrieved " +
     data.retrieved +
     " UTC";
   return data;

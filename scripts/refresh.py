@@ -1,4 +1,5 @@
 """Verify the scanned release and publish the checked annual price transcription."""
+import argparse
 import csv
 import json
 from concurrent.futures import ThreadPoolExecutor
@@ -62,10 +63,27 @@ def assemble():
                 items=items, years=years, source=archives()[0]["url"])
 
 
+def check_review():
+    folder = ROOT / "sources"
+    review = json.loads((folder / "historical-review.json").read_text())
+    for name, expected in review["sha256"].items():
+        if hashlib.sha256((folder / name).read_bytes()).hexdigest() != expected:
+            raise ValueError(f"Historical source or transcription needs review: {name}")
+    return review["verified"]
+
+
 if __name__ == "__main__":
-    with ThreadPoolExecutor(max_workers=4) as pool:
-        list(pool.map(verify, archives()))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--verify-archives", action="store_true",
+                        help="Re-download the eight original PDFs and compare bytes to reviewed hashes")
+    args = parser.parse_args()
+    historical_verified = check_review()
+    if args.verify_archives:
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            list(pool.map(verify, archives()))
+        print("All archived PDF digests match the historical review.")
     data = assemble()
+    data["historicalVerified"] = historical_verified
     data["tables"] = {key: read_table(key, download(spec[0])) for key, spec in TABLES.items()}
     data["tables"]["print"] = read_print_series()
     data["tables"]["yearbook"] = read_print_series(yearbook=True)
