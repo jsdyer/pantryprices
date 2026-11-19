@@ -1,0 +1,27 @@
+period,item,label,unit,cents,source_url,pdf_page
+1935,bacon,Bacon,1 kilogram,68,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,bacon,Bacon,1 kilogram,890,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,steak,Sirloin steak,1 kilogram,51,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,steak,Sirloin steak,1 kilogram,1539,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,flour,Flour,1 kilogram,7,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,flour,Flour,1 kilogram,189,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,sugar,Sugar,1 kilogram,14,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,sugar,Sugar,1 kilogram,121,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,coffee,Coffee,1 kilogram,83,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,coffee,Coffee,1 kilogram,1293,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,onions,Onions,1 kilogram,9,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,onions,Onions,1 kilogram,128,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,potatoes,Potatoes,4.54 kilograms,14,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,potatoes,Potatoes,4.54 kilograms,458,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,milk,"Milk, Table 25.b",1 litre,10,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,milk,"Milk, Table 25.b",1 litre,204,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,eggs,Eggs,1 dozen,31,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,eggs,Eggs,1 dozen,257,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,butter,Butter,454 grams,28,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,butter,Butter,454 grams,425,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1960,eggs,Eggs,1 dozen,55,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1985,eggs,Eggs,1 dozen,137,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1985,skimmed,Partly skimmed milk,1 litre,98,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+2008,skimmed,Partly skimmed milk,1 litre,199,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1935,quart,"Milk, quoted by quart",1 quart,10,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3
+1960,quart,"Milk, quoted by quart",1 quart,24,https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf,3

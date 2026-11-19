@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['scripts/refresh.py', 'scripts/source_io.py', 'scripts/requirements.txt', 'sources/**', '.github/workflows/refresh.yml']
+    paths: ['scripts/refresh.py', 'scripts/monthly.py', 'scripts/print_prices.py', 'scripts/source_io.py', 'scripts/requirements.txt', 'sources/**', '.github/workflows/refresh.yml']
 permissions:
   contents: read
 concurrency:

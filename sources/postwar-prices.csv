@@ -1,0 +1,56 @@
+period,item,label,unit,cents,source_url,pdf_page
+1960,butter,Butter,lb,69.8,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1960,bread,Bread,lb,15.6,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1960,flour,Flour,lb,8.8,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1960,eggs,Eggs,dozen,54.5,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1960,sugar,Granulated sugar,lb,9.4,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1961,butter,Butter,lb,69.9,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1961,bread,Bread,lb,15.9,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1961,flour,Flour,lb,9.0,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1961,eggs,Eggs,dozen,56.3,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1961,sugar,Granulated sugar,lb,9.6,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf,38
+1962,butter,Butter,lb,62.1,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1962,bread,Bread,lb,16.4,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1962,flour,Flour,lb,9.8,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1962,eggs,Eggs,dozen,53.2,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1962,sugar,Granulated sugar,lb,9.5,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1963,butter,Butter,lb,58.5,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1963,bread,Bread,lb,17.2,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1963,flour,Flour,lb,10.3,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1963,eggs,Eggs,dozen,58.4,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1963,sugar,Granulated sugar,lb,15.7,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf,37
+1964,butter,Butter,lb,58.9,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1964,bread,Bread,lb,18.1,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1964,flour,Flour,lb,10.8,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1964,eggs,Eggs,dozen,50.7,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1964,sugar,Granulated sugar,lb,14.1,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1965,butter,Butter,lb,61.4,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1965,bread,Bread,lb,18.1,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1965,flour,Flour,lb,10.9,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1965,eggs,Eggs,dozen,54.3,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1965,sugar,Granulated sugar,lb,9.8,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf,36
+1966,butter,Butter,lb,67.1,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1966,bread,Bread,lb,19.0,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1966,flour,Flour,lb,11.4,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1966,eggs,Eggs,dozen,64.1,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1966,sugar,Granulated sugar,lb,9.5,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1967,butter,Butter,lb,70.4,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1967,bread,Bread,lb,19.0,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1967,flour,Flour,lb,11.8,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1967,eggs,Eggs,dozen,54.1,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1967,sugar,Granulated sugar,lb,9.4,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf,38
+1968,butter,Butter,lb,70.9,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1968,bread,Bread,lb,19.6,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1968,flour,Flour,lb,12.0,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1968,eggs,Eggs,dozen,55.6,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1968,sugar,Granulated sugar,lb,9.4,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1969,butter,Butter,lb,72.2,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1969,bread,Bread,lb,19.8,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1969,flour,Flour,lb,12.1,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1969,eggs,Eggs,dozen,61.8,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1969,sugar,Granulated sugar,lb,10.9,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf,68
+1970,butter,Butter,lb,72.0,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-49-6-eng.pdf,70
+1970,bread,Bread,lb,20.1,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-49-6-eng.pdf,70
+1970,flour,Flour,lb,12.2,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-49-6-eng.pdf,70
+1970,eggs,Eggs,dozen,55.4,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-49-6-eng.pdf,70
+1970,sugar,Granulated sugar,lb,11.5,https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-49-6-eng.pdf,70

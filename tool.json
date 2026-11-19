@@ -1,7 +1,7 @@
 {
   "id": "pantryprices",
   "title": "Pantry Prices",
-  "description": "Price a grocery basket in two historical years using Canada’s published urban retail averages.",
+  "description": "Compare Canadian grocery baskets across historical years, recent months and provincial retail prices.",
   "category": "money",
   "tags": [
     "Canada",
@@ -19,7 +19,7 @@
   "access": "browser",
   "data_info": {
     "mode": "snapshot",
-    "detail": "The Dominion Bureau of Statistics published retail prices by weight or dozen. Each ingredient opens the original table for its price series.",
+    "detail": "Published urban annual prices and two distinct Statistics Canada monthly grocery price tables retain their own package sizes and methods.",
     "cadence": "Monthly",
     "probes": [
       {
@@ -32,17 +32,17 @@
           "path": [
             "count"
           ],
-          "unit": "item-year prices"
+          "unit": "published prices"
         }
       },
       {
-        "label": "Price years",
+        "label": "Retail scanner months",
         "url": "https://coolcode.ca/pantryprices/data/edition.json",
         "path": [
-          "start"
+          "recentStart"
         ],
         "end_path": [
-          "end"
+          "recentEnd"
         ]
       }
     ]

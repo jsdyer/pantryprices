@@ -298,3 +298,17 @@ ul.sources li {
   color: var(--ink);
   font-size: 0.85rem;
 }
+
+[hidden] {
+  display: none !important;
+}
+#trend .missing {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0 4px,
+    #d4dadd 5px 6px
+  );
+}
+.controls select {
+  max-width: 100%;
+}
