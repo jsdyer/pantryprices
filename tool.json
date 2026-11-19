@@ -1,16 +1,50 @@
 {
-  "id": "coolcode-tool-template",
-  "title": "CoolCode Tool Starter",
-  "description": "A browser-only example that trims lines and removes exact duplicates.",
-  "category": "security",
-  "tags": ["text", "lines", "duplicates"],
-  "icon": "scan-search",
-  "url": "/coolcode-tool-template/",
-  "source": "https://github.com/jsdyer/coolcode-tool-template",
+  "id": "pantryprices",
+  "title": "Pantry Prices",
+  "description": "Price a grocery basket in two historical years using Canada’s published urban retail averages.",
+  "category": "money",
+  "tags": [
+    "Canada",
+    "food",
+    "prices",
+    "Statistics Canada",
+    "historical groceries",
+    "butter",
+    "flour"
+  ],
+  "icon": "wallet",
+  "url": "/pantryprices/",
+  "source": "https://github.com/jsdyer/pantryprices",
   "hosting": "project",
   "access": "browser",
   "data_info": {
-    "mode": "local",
-    "detail": "The browser reads the text you paste and compares its lines."
+    "mode": "snapshot",
+    "detail": "The Dominion Bureau of Statistics published retail prices by weight or dozen. Each ingredient opens the original table for its price series.",
+    "cadence": "Monthly",
+    "probes": [
+      {
+        "label": "Data retrieved",
+        "url": "https://coolcode.ca/pantryprices/data/edition.json",
+        "path": [
+          "retrieved"
+        ],
+        "count_at": {
+          "path": [
+            "count"
+          ],
+          "unit": "item-year prices"
+        }
+      },
+      {
+        "label": "Price years",
+        "url": "https://coolcode.ca/pantryprices/data/edition.json",
+        "path": [
+          "start"
+        ],
+        "end_path": [
+          "end"
+        ]
+      }
+    ]
   }
 }
