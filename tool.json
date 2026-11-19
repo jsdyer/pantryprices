@@ -23,7 +23,7 @@
     "cadence": "Monthly",
     "probes": [
       {
-        "label": "Data retrieved",
+        "label": "Monthly tables retrieved",
         "url": "https://coolcode.ca/pantryprices/data/edition.json",
         "path": [
           "retrieved"

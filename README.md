@@ -26,7 +26,7 @@ Switch a monthly series to **Complete calendar year** for the unweighted mean of
 
 ## Refresh and verification
 
-The monthly refresh downloads the two official CSV ZIP files, validates the expected dimensions, units, periods and product definitions, and rechecks the SHA-256 of each reviewed historical PDF. The checked-in browser edition records each modern source archive hash, source vector, monthly observation and retrieval date. The print transcriptions and archived publication hashes are in [sources](sources/). A failed source check leaves the previous combined edition available.
+The monthly refresh downloads the two official CSV ZIP files, validates the expected dimensions, units, periods and product definitions, and checks the archived transcriptions and source manifest against their reviewed SHA-256 hashes. The checked-in browser edition records each modern source archive hash, source vector, monthly observation and retrieval date. The print transcriptions, publisher PDF hashes and dated historical review are in [sources](sources/). The historical verification date changes only after a reviewed update. Run `python3 scripts/refresh.py --verify-archives` to download and compare the eight original PDFs again. A failed source check leaves the previous combined edition available.
 
 ```sh
 python3 scripts/refresh.py

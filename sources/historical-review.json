@@ -1,0 +1,9 @@
+{
+  "verified": "2026-11-19",
+  "sha256": {
+    "releases.json": "00e66f40eb719acf86c4025c3eea7cbcec89b542e1b55c944e3c3dca90525a24",
+    "annual-prices.csv": "8b16e704a8f5e017403618a73cfd2ad96b76add0294471019a0e9f2ac0467a26",
+    "postwar-prices.csv": "ffe91800853dcf486cd48e6e51e7b524abcd428f9600ea3b3a0b240f487fadf9",
+    "yearbook-prices.csv": "f5681a337a951ea9d2b078a5a5c67e2a8f174a03411f69f95ab6ad74b9f59f79"
+  }
+}
