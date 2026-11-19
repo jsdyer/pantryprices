@@ -18,9 +18,8 @@
         <div class="mast">
           <h1>{{TITLE}}</h1>
           <p>
-            What did the same grocery basket cost in two different years? Choose
-            the quantities and compare published urban Canadian prices from 1914
-            to 1959.
+            Compare the cost of your grocery basket across Canadian price
+            records, from the early urban surveys to recent grocery receipts.
           </p>
         </div>
       </div>
@@ -30,17 +29,26 @@
       <section>
         <h2>Price a basket</h2>
         <div class="controls">
-          <label>First year<select id="first"></select></label
-          ><label>Compare with<select id="second"></select></label>
+          <label class="wide">Price series<select id="series"></select></label>
+          <label>Geography<select id="region"></select></label>
+          <label id="frequency-wrap"
+            >View prices by<select id="frequency">
+              <option value="monthly">Month</option>
+              <option value="annual">Complete calendar year</option>
+            </select></label
+          >
+        </div>
+        <p id="method" class="feature"></p>
+        <div class="controls">
+          <label>First period<select id="first"></select></label>
+          <label>Compare with<select id="second"></select></label>
         </div>
         <div id="ingredients" class="ingredients"></div>
         <div class="actions">
-          <button type="button" id="reset">
-            Restore butter and flour basket
-          </button>
+          <button type="button" id="reset">Restore starting basket</button>
         </div>
         <p class="hint">
-          Enter pounds or dozens in the units shown. A quantity of zero leaves
+          Enter quantities in the package sizes shown. A quantity of zero leaves
           that item out.
         </p>
         <div id="facts" class="facts" aria-live="polite"></div>
@@ -63,24 +71,39 @@
       </section>
       <section>
         <h2>Follow this basket through time</h2>
-        <p>Select a year on the chart to use it as the comparison year.</p>
+        <p id="chart-label"></p>
         <div
           id="trend"
           role="group"
-          aria-label="Annual cost of the selected basket"
+          aria-label="Cost of the selected basket over time"
         ></div>
-        <div class="axis"><span>1914</span><span>1959</span></div>
+        <div class="axis" id="axis"></div>
         <details>
-          <summary>All annual basket totals</summary>
+          <summary>All basket totals in this series</summary>
           <div
             class="scroll"
             tabindex="0"
             role="region"
-            aria-label="Annual basket totals"
+            aria-label="Basket totals by period"
           >
-            <table id="annual" aria-label="Annual basket totals"></table>
+            <table id="annual" aria-label="Basket totals by period"></table>
           </div>
         </details>
+      </section>
+      <section id="region-comparison" hidden>
+        <h2>This basket across Canada</h2>
+        <p>
+          Compare the same quantities at the second selected period. Canada is
+          the national estimate. The two northern entries represent cities.
+        </p>
+        <div
+          class="scroll"
+          tabindex="0"
+          role="region"
+          aria-label="Basket cost by geography"
+        >
+          <table id="regional"></table>
+        </div>
       </section>
       <noscript
         ><p>
@@ -92,14 +115,59 @@
     <footer id="sources" class="wrap">
       <h2>Sources &amp; method</h2>
       <p>
-        The Dominion Bureau of Statistics’ 1960 report gives national urban
-        averages in cents per published unit. Quantities stay fixed across
-        years. The figures use the money of each year. Products, specifications
-        and collection methods changed over the period.
+        Each comparison uses one source series and the package sizes it
+        published. The two monthly tables overlap in 2017–2022 and use different
+        methods. Changing products, brands and retailers can affect averages.
+        Use the Consumer Price Index for a measure of inflation.
       </p>
+      <p id="coverage-note">
+        Annual urban grocery prices cover 1914–1959 and 1960–1970 in two
+        publications. The Year Book supplies two 1985 benchmarks: eggs and
+        partly skimmed milk. The other years from 1971 to 1994 are unreported
+        here. Monthly prices begin in January 1995.
+      </p>
+      <ul class="sources">
+        <li>
+          <a
+            href="https://publications.gc.ca/site/eng/9.843684/publication.html"
+            >Urban Retail Food Prices, 1914–59</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://publications.gc.ca/site/eng/9.822624/publication.html"
+            >Prices and Price Indexes, Table 10 · 1960–1970 observations</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/chap/prices-prix/prices-prix02-eng.htm"
+            >Canada Year Book 2011 · Table 25.b and accompanying text</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000201"
+            >Statistics Canada retail price survey, table 18-10-0002-01</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501"
+            >Statistics Canada scanner prices, table 18-10-0245-01</a
+          >
+          ·
+          <a
+            href="https://www150.statcan.gc.ca/n1/pub/62f0014m/62f0014m2022007-eng.htm"
+            >Methodology</a
+          >
+        </li>
+      </ul>
       <p>
-        <a href="https://publications.gc.ca/site/eng/9.843684/publication.html"
-          >Statistics Canada publication and original tables</a
+        Adapted from Statistics Canada, reference periods shown above. This does
+        not constitute an endorsement by Statistics Canada of this product.
+        <a href="https://www.statcan.gc.ca/en/terms-conditions/open-licence"
+          >Statistics Canada Open Licence</a
         >
       </p>
       <p>

@@ -1,11 +1,15 @@
 """Verify the scanned release and publish the checked annual price transcription."""
 import csv
+import json
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 from http.cookiejar import CookieJar
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlsplit
 from urllib.request import build_opener, HTTPCookieProcessor, Request
 from source_io import ROOT, archives, publish
+from monthly import TABLES, download, read_table
+from print_prices import read_print_series
 
 
 class PublicationNotice(HTMLParser):
@@ -16,7 +20,7 @@ class PublicationNotice(HTMLParser):
     def handle_starttag(self, tag, attributes):
         if tag == "a":
             url = dict(attributes).get("href", "")
-            if urlsplit(url).path.lower().endswith(".pdf"):
+            if urlsplit(url).path.lower().endswith(".pdf") and "/fr/" not in url and "fra.pdf" not in url:
                 self.pdf = url
 
 
@@ -30,9 +34,11 @@ def verify(source):
     if not data.startswith(b"%PDF"):
         notice = PublicationNotice()
         notice.feed(data.decode())
-        if not notice.pdf or urljoin(page, notice.pdf) != source["url"]:
+        target = urljoin(page, notice.pdf or "")
+        valid_chapter = source.get("chapter") and target.split("?")[0] == source["chapter"]
+        if not notice.pdf or (target != source["url"] and not valid_chapter):
             raise ValueError("Publication notice did not link to the expected price report")
-        request.add_header("Referer", page)
+        request = Request(target, headers={"Referer": page, "User-Agent": "CoolCode.ca historical prices/1.0"})
         with opener.open(request, timeout=100) as response:
             data = response.read()
     if hashlib.sha256(data).hexdigest() != source["sha256"]:
@@ -57,5 +63,20 @@ def assemble():
 
 
 if __name__ == "__main__":
-    verify(archives()[0])
-    publish(assemble())
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        list(pool.map(verify, archives()))
+    data = assemble()
+    data["tables"] = {key: read_table(key, download(spec[0])) for key, spec in TABLES.items()}
+    data["tables"]["print"] = read_print_series()
+    data["tables"]["yearbook"] = read_print_series(yearbook=True)
+    data["count"] += sum(table["count"] for table in data["tables"].values())
+    data["recentStart"] = data["tables"]["scanner"]["start"]
+    data["recentEnd"] = data["tables"]["scanner"]["end"]
+    previous_path = ROOT / "web/data/edition.json"
+    if previous_path.exists():
+        previous = json.loads(previous_path.read_text())
+        if previous.get("recentEnd", "") > data["recentEnd"]:
+            raise ValueError("Scanner edition ends before the last successful release")
+    data["end"] = int(data["recentEnd"][:4])
+    data["coverage"] = "Selected Canadian series, 1914–" + str(data["end"])
+    publish(data)

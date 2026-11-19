@@ -1,7 +1,44 @@
 [
   {
-    "title": "Urban Retail Food Prices, 1914–59",
+    "title": "Urban Retail Food Prices, 1914\u201359",
     "url": "https://publications.gc.ca/collections/collection_2017/statcan/CS62-514-1960-eng.pdf",
     "sha256": "4a146bdd6d8652e631ae99e1aff85e997a5d5278cc03cb21ebb2cdd7f528bfee"
+  },
+  {
+    "title": "Prices and Price Indexes, June 1962, Table 10",
+    "url": "https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-40-6-eng.pdf",
+    "sha256": "126057b426e2374a39850b1f085b5c53b93225f6301fd629cb0d06ebc0ad0877"
+  },
+  {
+    "title": "Prices and Price Indexes, June 1964, Table 10",
+    "url": "https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-42-6-eng.pdf",
+    "sha256": "da8e75e09f55b230cdf8b0eda0cc7c1db2689ba1c08ec943bc766bdd11ca72ab"
+  },
+  {
+    "title": "Prices and Price Indexes, June 1966, Table 10",
+    "url": "https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-44-6-eng.pdf",
+    "sha256": "57bd621e500c4dff9b5658aa12b16079d340881a892e9bc0a9dd449b7db56a0b"
+  },
+  {
+    "title": "Prices and Price Indexes, June 1968, Table 10",
+    "url": "https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-46-6-eng.pdf",
+    "sha256": "853fa320641bbd01d672bc8076515752e91c5f42d58e0b19ccbbd13e99729dbe"
+  },
+  {
+    "title": "Prices and Price Indexes, June 1970, Table 10",
+    "url": "https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-48-6-eng.pdf",
+    "sha256": "edee4fc942e70dd445a3bb6a2cdf55235a3c3e8d9a58641e4a45db270beda760"
+  },
+  {
+    "title": "Prices and Price Indexes, June 1971, Table 10",
+    "url": "https://publications.gc.ca/collections/collection_2016/statcan/62-002/CS62-002-49-6-eng.pdf",
+    "sha256": "3d1c35aa38020797626edf6028c7ccca2b656283229a93c08ccd41eb246ecfba"
+  },
+  {
+    "title": "Canada Year Book 2011, Prices and price indexes, Table 25.b and adjoining text",
+    "url": "https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf",
+    "sha256": "c40dd185e8d3b939beb35446cb6e22766f9f9ce7a239fc5718a1bfe5aaa07baf",
+    "chapter": "https://www150.statcan.gc.ca/n1/en/pub/11-402-x/2011000/pdf/prices-prix-eng.pdf",
+    "html": "https://www150.statcan.gc.ca/n1/pub/11-402-x/2011000/chap/prices-prix/prices-prix02-eng.htm"
   }
 ]
