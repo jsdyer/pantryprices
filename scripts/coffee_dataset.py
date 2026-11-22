@@ -17,7 +17,7 @@ def export_coffee(stage):
         "name": "Commodity to shelf — monthly Arabica and Canadian retail coffee prices",
         "description": "Monthly World Bank Arabica prices in USD and CAD per kilogram, Bank of Canada exchange rates and average 340 g retail coffee prices from Statistics Canada for British Columbia and Nova Scotia.",
         "creator": {"@type": "Organization", "name": "CoolCode", "url": "https://coolcode.ca/"},
-        "url": base + "#coffee", "dateModified": data["retrieved"],
+        "url": base + "#coffee", "usageInfo": base + "#coffee-sources", "dateModified": data["retrieved"],
         "temporalCoverage": data["start"] + "/" + data["end"],
         "spatialCoverage": ["British Columbia, Canada", "Nova Scotia, Canada"],
         "isBasedOn": [source["url"] for source in data["sources"]],
