@@ -1,11 +1,11 @@
 name: Refresh published records
 on:
   schedule:
-    - cron: '13 9 2 * *'
+    - cron: '13 9 2,23 * *'
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['scripts/refresh.py', 'scripts/monthly.py', 'scripts/print_prices.py', 'scripts/source_io.py', 'scripts/requirements.txt', 'sources/**', '.github/workflows/refresh.yml']
+    paths: ['scripts/refresh.py', 'scripts/monthly.py', 'scripts/coffee.py', 'scripts/print_prices.py', 'scripts/source_io.py', 'scripts/requirements.txt', 'sources/**', '.github/workflows/refresh.yml']
 permissions:
   contents: read
 concurrency:
@@ -26,6 +26,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - run: python3 -m pip install -r scripts/requirements.txt
       - run: python3 scripts/refresh.py
       - run: python3 -m unittest discover -s tests
       - run: node --test tests/*.test.mjs

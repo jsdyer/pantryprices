@@ -3,7 +3,7 @@
 Price the same grocery basket at two dates using Canadian retail prices. Select a series, geography, period and package quantities. The current scanner table also compares that basket across available geographies. [Open Pantry Prices](https://coolcode.ca/pantryprices/)
 
 <!-- coolcode:guide -->
-One 454 g butter, one 675 g white bread and a dozen eggs totalled $9.69 in September 2017 and $13.99 in September 2026 at Canadian scanner averages. Choose a province to compare its prices, or select an earlier price series to explore the published urban and national records back to 1914.
+One 454 g butter, one 675 g white bread and a dozen eggs totalled $9.69 in September 2017 and $13.99 in September 2026 at Canadian scanner averages. Choose a province to compare its prices, or select an earlier price series to explore the published urban and national records back to 1914. In Commodity to shelf, choose a base month to see when Arabica, BC and Nova Scotia retail coffee first rose or fell by the same percentage.
 <!-- /coolcode:guide -->
 
 ## What the prices cover
@@ -24,11 +24,20 @@ The first two historical sources use printed annual averages. For example, one p
 
 Switch a monthly series to **Complete calendar year** for the unweighted mean of its 12 monthly prices. Incomplete calendar years do not appear. If an ingredient lacks even one price, its annual value and any basket using that ingredient are unreported. The same rule applies to monthly or regional basket totals when a selected item is missing. Individual ingredient prices stay visible in the breakdown. Downloads include the source, region, period, product, package, quantity, unit price, extended cost, statistical vector where available, and method.
 
+## Commodity to shelf
+
+The [coffee comparison](https://coolcode.ca/pantryprices/#coffee) starts in January 2017 and ends at the latest month available in all four source series. The World Bank Pink Sheet’s **Coffee, Arabica** series represents the International Coffee Organization’s other mild Arabicas benchmark. Each month’s nominal US$/kg is multiplied by the Bank of Canada’s FXMUSDCAD monthly average (Canadian dollars per US dollar). This is a conversion of two monthly averages. Statistics Canada’s *Roasted or ground coffee, 340 grams* provides British Columbia vector v1353834702 and Nova Scotia vector v1353834443. This product can contain a blend of beans. [World Bank workbook index](https://www.worldbank.org/en/research/commodity-markets) · [Bank of Canada](https://www.bankofcanada.ca/rates/exchange/monthly-exchange-rates/) · [Statistics Canada table](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501)
+
+The chart computes 100 × (current price / selected base price − 1) independently for each series. All three observations must exist in the base month. Select a positive or negative threshold to see the first published month each price crossed it, and the lead or lag in calendar months for each province. A missing observation creates a gap. A threshold could have been crossed during that gap. Retail product mix, roasting, retailer coverage and other costs can affect price changes. The difference cannot identify a retailer’s markup or establish that one price caused another to change.
+
+The [full monthly CSV](https://coolcode.ca/pantryprices/data/coffee.csv) contains the original benchmark, exchange rate, converted benchmark and both retail prices. Empty cells are unreported. The [snapshot](https://coolcode.ca/pantryprices/data/coffee.json) also records the download date, latest period by source, source URLs and file hashes. The build generates the CSV and Dataset structured data from that snapshot.
+
 ## Refresh and verification
 
-The monthly refresh downloads the two official CSV ZIP files, validates the expected dimensions, units, periods and product definitions, and checks the archived transcriptions and source manifest against their reviewed SHA-256 hashes. The checked-in browser edition records each modern source archive hash, source vector, monthly observation and retrieval date. The print transcriptions, publisher PDF hashes and dated historical review are in [sources](sources/). The historical verification date changes only after a reviewed update. Run `python3 scripts/refresh.py --verify-archives` to download and compare the eight original PDFs again. A failed source check leaves the previous combined edition available.
+On the 2nd and 23rd of each month, the refresh collects the current Pink Sheet and exchange rates, downloads the two official CSV ZIP files, validates the expected dimensions, units, periods and product definitions, and checks the archived transcriptions and source manifest against their reviewed SHA-256 hashes. The checked-in browser edition records each modern source archive hash, source vector, monthly observation and retrieval date. The print transcriptions, publisher PDF hashes and dated historical review are in [sources](sources/). The historical verification date changes only after a reviewed update. Run `python3 scripts/refresh.py --verify-archives` to download and compare the eight original PDFs again. A failed source check leaves the previous combined edition available.
 
 ```sh
+python3 -m pip install -r scripts/requirements.txt
 python3 scripts/refresh.py
 node --test tests/*.test.mjs
 python3 -m unittest discover -s tests -v

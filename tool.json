@@ -1,7 +1,7 @@
 {
   "id": "pantryprices",
   "title": "Pantry Prices",
-  "description": "Compare Canadian grocery baskets across historical years, recent months and provincial retail prices.",
+  "description": "Compare Canadian grocery baskets across time and follow world coffee prices to supermarket shelves in BC and Nova Scotia.",
   "category": "money",
   "tags": [
     "Canada",
@@ -10,7 +10,8 @@
     "Statistics Canada",
     "historical groceries",
     "butter",
-    "flour"
+    "flour",
+    "coffee"
   ],
   "icon": "wallet",
   "url": "/pantryprices/",
@@ -19,7 +20,7 @@
   "access": "browser",
   "data_info": {
     "mode": "snapshot",
-    "detail": "Published urban annual prices and two distinct Statistics Canada monthly grocery price tables retain their own package sizes and methods.",
+    "detail": "Historical surveys and Statistics Canada scanner prices track groceries. World Bank and Bank of Canada monthly data put Arabica and provincial coffee prices on a common baseline.",
     "cadence": "Monthly",
     "probes": [
       {
@@ -43,6 +44,16 @@
         ],
         "end_path": [
           "recentEnd"
+        ]
+      },
+      {
+        "label": "Coffee comparison months",
+        "url": "https://coolcode.ca/pantryprices/data/coffee.json",
+        "path": [
+          "start"
+        ],
+        "end_path": [
+          "end"
         ]
       }
     ]

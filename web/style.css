@@ -312,3 +312,13 @@ ul.sources li {
 .controls select {
   max-width: 100%;
 }
+
+#coffee-controls { border: 0; padding: 0; margin: 1rem 0; }
+#coffee-controls legend { font-weight: 700; margin-bottom: .5rem; }
+#coffee-chart { display: block; width: 100%; max-width: 56rem; height: auto; }
+#coffee-chart text { fill: var(--ink); font: 16px system-ui, sans-serif; }
+.coffee-legend { display: flex; flex-wrap: wrap; column-gap: 1.4rem; row-gap: .4rem; }
+.coffee-legend span::before { display: inline-block; content: ""; vertical-align: middle; width: 1.5rem; margin-right: .4rem; border-top: 3px solid #733e22; }
+.coffee-legend span:nth-child(2)::before { border-top: 3px dashed #186b64; }
+.coffee-legend span:nth-child(3)::before { border-top: 3px dotted #584687; }
+#coffee table { min-width: 52rem; }
