@@ -21,7 +21,7 @@
   "data_info": {
     "mode": "snapshot",
     "detail": "Historical surveys and Statistics Canada scanner prices track groceries. World Bank and Bank of Canada monthly data put Arabica and provincial coffee prices on a common baseline.",
-    "cadence": "Monthly",
+    "cadence": "Twice monthly",
     "probes": [
       {
         "label": "Monthly tables retrieved",
