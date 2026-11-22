@@ -10,6 +10,7 @@ from urllib.parse import urljoin, urlsplit
 from urllib.request import build_opener, HTTPCookieProcessor, Request
 from source_io import ROOT, archives, publish
 from monthly import TABLES, download, read_table
+from coffee import collect, save_edition
 from print_prices import read_print_series
 
 
@@ -84,7 +85,10 @@ if __name__ == "__main__":
         print("All archived PDF digests match the historical review.")
     data = assemble()
     data["historicalVerified"] = historical_verified
-    data["tables"] = {key: read_table(key, download(spec[0])) for key, spec in TABLES.items()}
+    scanner = download(TABLES["scanner"][0])
+    coffee = collect(scanner)
+    data["tables"] = {"scanner": read_table("scanner", scanner),
+                      "survey": read_table("survey", download(TABLES["survey"][0]))}
     data["tables"]["print"] = read_print_series()
     data["tables"]["yearbook"] = read_print_series(yearbook=True)
     data["count"] += sum(table["count"] for table in data["tables"].values())
@@ -97,4 +101,5 @@ if __name__ == "__main__":
             raise ValueError("Scanner edition ends before the last successful release")
     data["end"] = int(data["recentEnd"][:4])
     data["coverage"] = "Selected Canadian series, 1914–" + str(data["end"])
+    save_edition(coffee)
     publish(data)

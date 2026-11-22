@@ -70,6 +70,16 @@ def main():
                 assert download.suggested_filename.endswith(".csv")
                 assert len(Path(download.path()).read_text().splitlines()) >= 2
                 page.select_option("#series","scanner")
+                page.select_option("#coffee-start", "2024-01")
+                page.select_option("#coffee-end", "2025-01")
+                page.select_option("#coffee-threshold", "-10")
+                assert page.locator("#coffee-rows tr").count() == 13
+                assert page.locator("#coffee-events li").count() == 3
+                assert "2024-01 to 2025-01" in page.locator("#coffee-result").inner_text()
+                assert page.locator("#coffee-chart path").count() == 3
+                with page.expect_download() as coffee_capture:
+                    page.get_by_role("link", name="Download all monthly coffee prices").click()
+                assert "arabica_cad_per_kg" in Path(coffee_capture.value.path()).read_text()
                 page.screenshot(path=str(screenshots / "desktop.png"), full_page=True)
                 page.set_viewport_size({"width": 390, "height": 844})
                 assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")

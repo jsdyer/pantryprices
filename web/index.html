@@ -7,6 +7,8 @@
     <title>{{TITLE}} · CoolCode</title>
     <link rel="stylesheet" href="./style.css" />
     <script type="module" src="./app.mjs"></script>
+    <script type="module" src="./coffee-ui.mjs"></script>
+    <script type="application/ld+json">{{COFFEE_DATASET}}</script>
   <script defer src="/assets/tool-metrics.js" referrerpolicy="no-referrer"></script>
 </head>
   <body>
@@ -14,7 +16,7 @@
       <div class="wrap">
         <nav>
           <a href="https://coolcode.ca/">CoolCode.ca</a
-          ><a href="#sources">Sources &amp; method</a>
+          ><a href="#coffee">Commodity to shelf</a><a href="#sources">Sources &amp; method</a>
         </nav>
         <div class="mast">
           <h1>{{TITLE}}</h1>
@@ -112,6 +114,34 @@
           are available below.
         </p></noscript
       >
+      <section id="coffee" aria-labelledby="coffee-title">
+        <h2 id="coffee-title">Commodity to shelf · Coffee</h2>
+        <p>When the world price of coffee moved, how soon did grocery prices in BC and Nova Scotia move by the same percentage? Compare the World Bank’s Arabica benchmark in Canadian dollars with each province’s average price for 340 g of roasted or ground coffee.</p>
+        <p id="coffee-edition" role="status">Loading coffee prices…</p>
+        <fieldset id="coffee-controls" class="controls" disabled>
+          <legend>Compare monthly prices</legend>
+          <label>Base month<select id="coffee-start"></select></label>
+          <label>Through<select id="coffee-end"></select></label>
+          <label>Look for the first change of<select id="coffee-threshold">
+            <option value="5">At least 5% up</option><option value="10" selected>At least 10% up</option><option value="20">At least 20% up</option>
+            <option value="-5">At least 5% down</option><option value="-10">At least 10% down</option><option value="-20">At least 20% down</option>
+          </select></label>
+        </fieldset>
+        <p>Each line starts at 0% in your base month. Gaps indicate an unavailable observation.</p>
+        <p class="coffee-legend"><span>Arabica benchmark</span><span>British Columbia</span><span>Nova Scotia</span></p>
+        <svg id="coffee-chart" viewBox="0 0 700 235" role="img" aria-label="Coffee price changes"></svg>
+        <p id="coffee-result" class="feature" aria-live="polite"></p>
+        <h3>When did each price cross your threshold?</h3>
+        <ul id="coffee-events" aria-live="polite"></ul>
+        <p>The first published crossing shows timing. Green Arabica and supermarket coffee have different product mixes, roasting, packaging, transport and selling costs. A gap between these lines cannot establish a retailer’s markup or how long it takes a supplier’s price change to reach a store.</p>
+        <details><summary>Monthly prices and percentage changes</summary>
+          <div class="scroll" tabindex="0" role="region" aria-label="Monthly coffee prices">
+            <table><thead><tr><th>Month</th><th>Arabica US$/kg</th><th>C$ per US$</th><th>Arabica C$/kg</th><th>BC C$/340 g</th><th>NS C$/340 g</th><th>Arabica change</th><th>BC change</th><th>NS change</th></tr></thead><tbody id="coffee-rows"></tbody></table>
+          </div>
+        </details>
+        <p><a href="./data/coffee.csv" download>Download all monthly coffee prices (CSV)</a></p>
+        <p class="hint">The <a href="https://www.worldbank.org/en/research/commodity-markets">World Bank Pink Sheet</a> reports the ICO other mild Arabicas benchmark in US$/kg. We multiply it by the <a href="https://www.bankofcanada.ca/rates/exchange/monthly-exchange-rates/">Bank of Canada monthly average exchange rate</a>. <a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810024501">Statistics Canada table 18-10-0245-01</a> supplies provincial shelf prices. Participating retailers expanded in January 2024.</p>
+      </section>
     </main>
     <footer id="sources" class="wrap">
       <h2>Sources &amp; method</h2>

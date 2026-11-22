@@ -7,6 +7,7 @@ import re
 import shutil
 import tempfile
 from urllib.parse import urlsplit
+from coffee_dataset import export_coffee
 
 ROOT = Path(__file__).resolve().parents[1]
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
@@ -52,7 +53,7 @@ def build(root=ROOT):
         stage = Path(temporary) / "site"
         shutil.copytree(web, stage)
         index = stage / "index.html"
-        page = index.read_text(encoding="utf-8")
+        page = index.read_text(encoding="utf-8").replace("{{COFFEE_DATASET}}", export_coffee(stage))
         for token, key in {"TITLE": "title", "DESCRIPTION": "description", "TOOL_ID": "id", "SOURCE_URL": "source"}.items():
             placeholder = "{{" + token + "}}"
             if placeholder not in page:
