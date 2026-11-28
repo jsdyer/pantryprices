@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { compare } from "../web/coffee.mjs";
+import { compare, seriesFor } from "../web/coffee.mjs";
 const rows = [
   { month: "2024-01", cad: 8, bc: 10, ns: 12 },
   { month: "2024-02", cad: 8.8, bc: null, ns: 10.8 },
@@ -13,4 +13,13 @@ test("uses each series' own shared-month baseline and counts first published cro
   assert.deepEqual(result.crossings, { cad: 1, bc: 2, ns: null });
   assert.deepEqual(compare(rows, "2024-01", "2024-02", -10).crossings, { cad: null, bc: null, ns: 1 });
   assert.throws(() => compare(rows, "2024-02", "2024-03", 10), /base month/);
+});
+
+test("a missing observation in an unselected province does not shorten the chosen comparison", () => {
+  const pair = seriesFor({ key: "on", name: "Ontario" }, { key: "ab", name: "Alberta" });
+  const expanded = rows.map((row, index) => ({ ...row, on: 10 + index, ab: index === 2 ? null : 8 }));
+  const result = compare(expanded, "2024-02", "2024-03", 5, pair);
+  assert.deepEqual(Object.keys(result.crossings), ["cad", "on", "ab"]);
+  assert.equal(result.crossings.on, 1);
+  assert.equal(result.points[1].changes.ab, null);
 });

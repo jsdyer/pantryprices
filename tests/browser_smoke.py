@@ -77,6 +77,19 @@ def main():
                 assert page.locator("#coffee-events li").count() == 3
                 assert "2024-01 to 2025-01" in page.locator("#coffee-result").inner_text()
                 assert page.locator("#coffee-chart path").count() == 3
+                assert page.locator("#coffee-first option").count() == 10
+                page.select_option("#coffee-first", "on")
+                page.select_option("#coffee-second", "ab")
+                assert "Ontario" in page.locator("#coffee-legend").inner_text()
+                assert "Alberta" in page.locator("#coffee-events").inner_text()
+                assert page.locator("#coffee-start").input_value() == "2024-01"
+                assert "Ontario" in page.locator("#coffee-first-price").text_content()
+                assert "Alberta" in page.locator("#coffee-second-price").text_content()
+                assert page.locator(".coffee-provinces tbody tr").count() == 10
+                page.locator(".coffee-provinces summary").click()
+                page.locator(".coffee-provinces").get_by_role("link", name="Quebec").click()
+                page.wait_for_function("document.querySelector('#coffee-first').value === 'qc'")
+                assert "Quebec" in page.locator("#coffee-result").text_content()
                 with page.expect_download() as coffee_capture:
                     page.get_by_role("link", name="Download all monthly coffee prices").click()
                 assert "arabica_cad_per_kg" in Path(coffee_capture.value.path()).read_text()

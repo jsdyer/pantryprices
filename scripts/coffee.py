@@ -17,7 +17,19 @@ MARKETS = "https://www.worldbank.org/en/research/commodity-markets"
 FX = "https://www.bankofcanada.ca/valet/observations/FXMUSDCAD/json?start_date=2017-01-01"
 SCANNER = "https://www150.statcan.gc.ca/n1/en/tbl/csv/18100245-eng.zip"
 PRODUCT = "Roasted or ground coffee, 340 grams"
-REGIONS = {"British Columbia": ("bc", "v1353834702"), "Nova Scotia": ("ns", "v1353834443")}
+# Preserve the first two public CSV columns and the original default pair.
+REGIONS = {
+    "British Columbia": ("bc", "v1353834702"),
+    "Nova Scotia": ("ns", "v1353834443"),
+    "Alberta": ("ab", "v1353834665"),
+    "Manitoba": ("mb", "v1353834591"),
+    "New Brunswick": ("nb", "v1353834480"),
+    "Newfoundland and Labrador": ("nl", "v1353834369"),
+    "Ontario": ("on", "v1353834554"),
+    "Prince Edward Island": ("pe", "v1353834406"),
+    "Quebec": ("qc", "v1353834517"),
+    "Saskatchewan": ("sk", "v1353834628"),
+}
 
 
 class WorkbookLink(HTMLParser):
@@ -82,7 +94,7 @@ def rates(payload):
 
 
 def shelf(payload):
-    result = {"bc": {}, "ns": {}}
+    result = {key: {} for key, _ in REGIONS.values()}
     with ZipFile(BytesIO(payload)) as archive, archive.open("18100245.csv") as raw:
         for row in csv.DictReader(TextIOWrapper(raw, encoding="utf-8-sig")):
             if row["Products"] != PRODUCT or row["GEO"] not in REGIONS:
@@ -95,6 +107,9 @@ def shelf(payload):
             if month in result[key] or row["STATUS"] not in (("",) if value else ("..", "...", "x", "F")):
                 raise ValueError("Review duplicate or flagged retail coffee data at " + month)
             result[key][month] = positive(value) if value else None
+    missing = [key for key, values in result.items() if not any(v is not None for v in values.values())]
+    if missing:
+        raise ValueError("Retail coffee series missing for " + ", ".join(missing))
     return result
 
 
@@ -107,8 +122,10 @@ def compile_edition(workbook, fx, scanner, workbook_url):
     usd, cad, retail = benchmark(workbook), rates(fx), shelf(scanner)
     series = {"usd": usd, "fx": cad, **retail}
     last = {key: max(month for month, value in data.items() if value is not None) for key, data in series.items()}
-    first = max(min(data) for data in series.values())
-    end = min(last.values())
+    # One province can have a suppressed price. Keep that cell empty without
+    # truncating every other province's history to its last nonmissing value.
+    first = max(min(usd), min(cad), min(min(values) for values in retail.values()))
+    end = min(last["usd"], last["fx"], max(max(values) for values in retail.values()))
     if first != "2017-01" or end < "2026-09":
         raise ValueError("Coffee source coverage has shortened unexpectedly")
     rows = []
@@ -121,6 +138,7 @@ def compile_edition(workbook, fx, scanner, workbook_url):
     urls = [workbook_url, FX, SCANNER]
     blobs = [workbook, fx, scanner]
     return {"retrieved": datetime.now(timezone.utc).date().isoformat(), "start": first, "end": end,
+            "regions": [{"key": key, "name": name, "vector": vector} for name, (key, vector) in REGIONS.items()],
             "latestBySource": last, "sources": [{"url": url, "sha256": sha256(blob).hexdigest()}
             for url, blob in zip(urls, blobs)], "rows": rows}
 

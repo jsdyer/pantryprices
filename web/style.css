@@ -321,4 +321,5 @@ ul.sources li {
 .coffee-legend span::before { display: inline-block; content: ""; vertical-align: middle; width: 1.5rem; margin-right: .4rem; border-top: 3px solid #733e22; }
 .coffee-legend span:nth-child(2)::before { border-top: 3px dashed #186b64; }
 .coffee-legend span:nth-child(3)::before { border-top: 3px dotted #584687; }
-#coffee table { min-width: 52rem; }
+#coffee .scroll table { min-width: 52rem; }
+.coffee-provinces caption { text-align: left; padding: .75rem 0; }

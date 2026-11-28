@@ -7,8 +7,8 @@ from tempfile import TemporaryDirectory
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from coffee import next_month
-from coffee_dataset import export_coffee
+from coffee import next_month, REGIONS
+from coffee_dataset import export_coffee, price_summary
 
 
 class CoffeeEditionTests(unittest.TestCase):
@@ -38,3 +38,14 @@ class CoffeeEditionTests(unittest.TestCase):
             self.assertEqual(schema["temporalCoverage"], rows[0]["month"] + "/" + rows[-1]["month"])
             self.assertTrue(schema["distribution"]["contentUrl"].endswith("/data/coffee.csv"))
             self.assertEqual(len(schema["isBasedOn"]), 3)
+            self.assertEqual(set(schema["spatialCoverage"]), {name + ", Canada" for name in REGIONS})
+            self.assertEqual(list(rows[0])[4:6], ["bc_cad_per_340g", "ns_cad_per_340g"])
+            self.assertEqual(len(rows[0]), 4 + len(REGIONS))
+            self.assertTrue(all("on_cad_per_340g" in row for row in rows))
+
+    def test_legacy_price_summary_keeps_unreported_cells(self):
+        html = price_summary({"rows": [{"month": "2024-01", "ns": None, "bc": 6.75}]})
+        self.assertIn("British Columbia", html)
+        self.assertIn("$6.75", html)
+        self.assertIn("Unreported", html)
+        self.assertNotIn("Ontario", html)

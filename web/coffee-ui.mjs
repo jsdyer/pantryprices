@@ -1,4 +1,4 @@
-import { compare, series } from "./coffee.mjs";
+import { compare, seriesFor } from "./coffee.mjs";
 
 const id = name => document.getElementById("coffee-" + name);
 const fmt = new Intl.NumberFormat("en-CA", { maximumFractionDigits: 1, minimumFractionDigits: 1, signDisplay: "exceptZero" });
@@ -20,7 +20,7 @@ function svg(tag, attrs, parent) {
   return el;
 }
 
-function draw(points) {
+function draw(points, series) {
   const chart = id("chart");
   chart.replaceChildren();
   const values = points.flatMap(p => Object.values(p.changes).filter(v => v !== null));
@@ -52,14 +52,20 @@ function draw(points) {
   if (points.length > 1) svg("text", { x: 680, y: 222, "text-anchor": "end" }, chart).textContent = points.at(-1).row.month;
 }
 
-function render(edition) {
+function render(edition, series) {
   const { rows } = edition;
   const start = id("start").value;
   const end = id("end").value;
   const threshold = Number(id("threshold").value);
-  const { points, crossings } = compare(rows, start, end, threshold);
-  draw(points);
+  const { points, crossings } = compare(rows, start, end, threshold, series);
+  draw(points, series);
   id("chart").setAttribute("aria-label", "Monthly percentage changes since " + start + ". Values are in the table below.");
+  id("legend").replaceChildren();
+  for (const { name } of series) node("span", name, id("legend"));
+  for (const [index, label] of ["first", "second"].entries()) {
+    id(label + "-price").textContent = series[index + 1].name + " C$/340 g";
+    id(label + "-change").textContent = series[index + 1].name + " change";
+  }
   const last = points.at(-1).changes;
   id("result").textContent = "From " + start + " to " + end + " · " + series.map(s => s.name + " " + pct(last[s.key])).join(" · ");
   const events = id("events");
@@ -82,7 +88,7 @@ function render(edition) {
   for (const { row, changes } of points) {
     const tr = node("tr", "", body);
     node("th", row.month, tr).scope = "row";
-    for (const value of [price(row.usd), row.fx?.toFixed(4) ?? "—", price(row.cad), price(row.bc), price(row.ns),
+    for (const value of [price(row.usd), row.fx?.toFixed(4) ?? "—", price(row.cad), ...series.slice(1).map(({key}) => price(row[key])),
                          ...series.map(s => pct(changes[s.key]))]) node("td", value, tr);
   }
 }
@@ -91,23 +97,50 @@ async function load() {
   const response = await fetch("./data/coffee.json");
   if (!response.ok) throw new Error("Coffee dataset is unavailable.");
   const edition = await response.json();
-  const complete = edition.rows.filter(row => series.every(({ key }) => row[key] > 0));
-  if (!complete.length) throw new Error("No common base month in this edition.");
-  const start = id("start"), end = id("end");
-  for (const row of complete) start.add(new Option(row.month, row.month));
-  start.value = complete[Math.max(0, complete.length - 36)].month;
+  const regions = edition.regions ?? [{ key: "bc", name: "British Columbia" }, { key: "ns", name: "Nova Scotia" }];
+  const first = id("first"), second = id("second"), start = id("start"), end = id("end");
+  for (const region of [...regions].sort((a, b) => a.name.localeCompare(b.name))) {
+    first.add(new Option(region.name, region.key));
+    second.add(new Option(region.name, region.key));
+  }
+  const requested = new URLSearchParams(location.search).get("coffeeProvince");
+  first.value = regions.some(r => r.key === requested) ? requested : "bc";
+  second.value = first.value === "ns" ? "bc" : "ns";
   for (const row of edition.rows) end.add(new Option(row.month, row.month));
   end.value = edition.end;
+  let selectedSeries;
   function update() {
     for (const option of end.options) option.disabled = option.value < start.value;
     if (end.value < start.value) end.value = start.value;
-    render(edition);
+    render(edition, selectedSeries);
   }
-  for (const el of [start, end, id("threshold")]) el.addEventListener("change", update);
+  function changeRegions() {
+    for (const option of first.options) option.disabled = option.value === second.value;
+    for (const option of second.options) option.disabled = option.value === first.value;
+    selectedSeries = seriesFor(regions.find(r => r.key === first.value), regions.find(r => r.key === second.value));
+    const complete = edition.rows.filter(row => selectedSeries.every(({ key }) => row[key] > 0));
+    const oldStart = start.value;
+    start.replaceChildren();
+    for (const row of complete) start.add(new Option(row.month, row.month));
+    if (!complete.length) {
+      id("chart").replaceChildren();
+      id("legend").replaceChildren();
+      id("rows").replaceChildren();
+      id("events").replaceChildren();
+      id("result").textContent = "These provinces have no shared base month. Choose another pair.";
+      return;
+    }
+    start.value = complete.some(row => row.month === oldStart) ? oldStart : complete[Math.max(0, complete.length - 36)].month;
+    update();
+  }
+  for (const el of [first, second]) el.addEventListener("change", changeRegions);
+  for (const el of [start, end, id("threshold")]) el.addEventListener("change", () => {
+    if (start.value) update();
+  });
   id("controls").disabled = false;
   id("edition").textContent = edition.start + " to " + edition.end + " · " + edition.rows.length +
     " calendar months · Sources retrieved " + edition.retrieved + " UTC";
-  update();
+  changeRegions();
 }
 load().catch(() => {
   id("edition").textContent = "The coffee comparison could not load. The full CSV is linked below.";
